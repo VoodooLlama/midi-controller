@@ -1,19 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Loading from 'components/Loading';
-import useEnableWebMIDI from 'hooks/useWebMIDI';
+import Loading from '../components/Loading';
+import Input from '../containers/Input';
+import useEnableWebMIDI from '../hooks/useEnableWebMIDI';
 
-const App = () => {
-  const isMIDIEnabled = useEnableWebMIDI();
+const App: React.FC = () => {
+  const isMIDIEnabled: boolean = useEnableWebMIDI();
+  const Container = isMIDIEnabled ? Input : Loading;
 
   return (
-      <div className="app">
-        {
-            isMIDIEnabled
-                ? <Loading />
-                : <div>INPUTS</div>
-        }
-      </div>
+    <div className="app">
+      <Container />
+    </div>
   );
 };
 
