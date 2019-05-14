@@ -9,7 +9,7 @@ function useEnableWebMIDI(): boolean {
   useEffect(() => {
     function onStatusChange(err?: Error){
         if (err) {
-            console.warn('An error occured connecting MIDI devices!');
+            console.warn('An error occured connecting to MIDI devices!');
 
             setEnabledState(false);
         }
@@ -17,7 +17,7 @@ function useEnableWebMIDI(): boolean {
         setEnabledState(true);
     }
 
-    webmidi.enable(onStatusChange)
+    webmidi.enable(onStatusChange);
 
     return () => {
       webmidi.disable();

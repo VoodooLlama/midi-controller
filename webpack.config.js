@@ -17,13 +17,17 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".ts", ".js", ".tsx"]
+    extensions: [".ts", ".js", ".tsx", ".scss"]
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         loader: "ts-loader"
+      },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
