@@ -1,9 +1,17 @@
 import React, { createContext, useReducer, useState } from 'react';
 import { Input, Output, MidiPort } from 'webmidi';
 import { string } from 'prop-types';
-import { isContext } from 'vm';
 
-export interface IDeviceContext implements IDeviceState {
+interface IDeviceState {
+    inputDevices: string[];
+    inputDevicesById: Record<string, Input>;
+    outputDevices: string[];
+    outputDevicesById: Record<string, Output>;
+    selectedInputDeviceId: string;
+    selectedOutputDeviceId: string;
+}
+
+export interface IDeviceContext extends IDeviceState {
     setInputDevices: (inputs: Input[]) => any;
 }
 
@@ -16,7 +24,7 @@ const initialState: IDeviceState = {
     selectedOutputDeviceId: ''
 };
 
-export const DeviceContext = createContext<IDeviceContext>(initialState);
+export const DeviceContext = createContext<IDeviceState>(initialState);
 
 enum DEVICE_ACTIONS {
     ADD_INPUT = '@@device/addInput',
@@ -37,14 +45,7 @@ type SetOutputsAction = {
 
 type Actions = SetInputsAction | SetOutputsAction;
 
-interface IDeviceState extends Readonly<{
-    inputDevices: string[],
-    inputDevicesById: Record<string, Input>,
-    outputDevices: string[],
-    outputDevicesById: Record<string, Output>,
-    selectedInputDeviceId: string,
-    selectedOutputDeviceId: string
-}>
+
 
 function deviceReducer(state: IDeviceState = initialState, action: Actions): IDeviceState {
     switch (action.type) {
@@ -65,11 +66,9 @@ function deviceReducer(state: IDeviceState = initialState, action: Actions): IDe
     }
 }
 
-interface IDeviceProviderProps {
-    children?: any;
-}
 
-export const DeviceProvider: React.Provider<IDeviceContext> = ({ children }) => {
+
+export const Provider: React.ProviderExoticComponent<any> = (component: React.Component<any>) => {
     const [state, dispatch] = useReducer(deviceReducer, initialState);
     const {
         inputDevices,
@@ -93,8 +92,13 @@ export const DeviceProvider: React.Provider<IDeviceContext> = ({ children }) => 
         outputDevices,
         outputDevicesById,
         selectedInputDeviceId,
-        selectedOutputDeviceId
+        selectedOutputDeviceId,
+        setInputDevices: dispatchSetInputDevices
     };
 
-    return <DeviceContext.Provider value={ devicesContext }>{ children }</DeviceContext.Provider>
+    return (
+        <DeviceContext.Provider value={ devicesContext }>
+            { component }
+        </DeviceContext.Provider>
+    );
 };
