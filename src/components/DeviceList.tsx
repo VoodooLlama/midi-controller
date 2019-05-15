@@ -1,12 +1,12 @@
 import { MidiPort } from "webmidi";
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { AnyTxtRecord } from "dns";
 import Device from './Device';
 
 interface IDeviceListProps {
     devices: MidiPort[];
     selectedDeviceId: string;
-    setSelectedDevice: (deviceId: string) => any;
+    setSelectedDevice: (deviceId: string) => void;
     title: string;
 }
 
@@ -24,7 +24,7 @@ const DeviceList: React.FC<IDeviceListProps> = ({ devices, selectedDeviceId, set
                         <Device
                             key={ device.id }
                             device={ device }
-                            selected={ selectedDeviceId === device.id }
+                            selectedDeviceId={ selectedDeviceId }
                             setSelectedDevice={ setSelectedDevice } />
                     )
                 }

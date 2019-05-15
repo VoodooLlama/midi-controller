@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as ReactDOM from 'react-dom';
-import { useEffect } from "react";
-import webmidi from "webmidi";
+import { useEffect } from 'react';
+import webmidi from 'webmidi';
+import { DeviceContext } from '../context/Device';
 
 function useEnableWebMIDI(): boolean {
   const [enabled, setEnabledState] = useState<boolean>(false);
@@ -17,7 +18,7 @@ function useEnableWebMIDI(): boolean {
         setEnabledState(true);
     }
 
-    webmidi.enable(onStatusChange);
+    webmidi.enable(onStatusChange, true);
 
     return () => {
       webmidi.disable();

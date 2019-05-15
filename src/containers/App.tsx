@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import Loading from '../components/Loading';
 import Devices from './Devices';
 import useEnableWebMIDI from '../hooks/useEnableWebMIDI';
+import { DeviceContext, DeviceProvider } from '../context/Device';
 
 const App: React.FC = () => {
   const isMIDIEnabled: boolean = useEnableWebMIDI();
@@ -10,7 +11,9 @@ const App: React.FC = () => {
   return (
     <main className="app">
       <Loading isLoaded={ isMIDIEnabled }>
-        <Devices />
+        <DeviceProvider>
+          <Devices />
+        </DeviceProvider>
       </Loading>
     </main>
   );

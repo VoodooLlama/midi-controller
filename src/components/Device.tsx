@@ -1,26 +1,27 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import * as ReactDOM from "react-dom";
 import classnames from 'classnames';
-import { MidiPort } from "webmidi";
+import { Input, MidiPort, Output } from "webmidi";
+import { DeviceContext } from '../context/Device';
 
 interface IDeviceProps {
   device: MidiPort;
-  selected?: boolean;
-  setSelectedDevice: (deviceId: string) => any;
+  selectedDeviceId: string;
+  setSelectedDevice: (deviceId: string) => void;
 }
 
-const Device: React.FC<IDeviceProps> = ({ device, selected, setSelectedDevice }) => {
+const Device: React.FC<IDeviceProps> = ({ device, setSelectedDevice, selectedDeviceId }) => {
   const { connection, id, manufacturer, name } = device;
+  const selected = selectedDeviceId === id;
+  const deviceClass = classnames('device', {
+    selected
+  });
 
-  const selectDeviceHandler = (event: React.SyntheticEvent) => {
+  const selectDeviceHandler = () => {
     if (!selected) {
       setSelectedDevice(id);
     }
   };
-
-  const deviceClass = classnames('device', {
-    selected
-  });
 
   return (
     <article className={ deviceClass } onClick={ selectDeviceHandler }>
