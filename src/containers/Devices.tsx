@@ -13,6 +13,7 @@ const Devices: React.FC = () => {
         selectedInputDeviceId,
         selectedOutputDeviceId,
         selectInputDevice,
+        selectOutputDevice,
         setInputDevices,
         setOutputDevices
     } = useContext<IDeviceContext>(DeviceContext);
@@ -50,7 +51,7 @@ const Devices: React.FC = () => {
                 devices={ outputs }
                 title={ 'Output Devices' }
                 selectedDeviceId={ selectedOutputDeviceId }
-                setSelectedDevice={ selectInputDevice } />
+                setSelectedDevice={ selectOutputDevice } />
         </section>
     );
 };

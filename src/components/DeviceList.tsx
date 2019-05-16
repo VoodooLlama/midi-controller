@@ -1,6 +1,5 @@
 import { MidiPort } from "webmidi";
 import React, { Dispatch } from 'react';
-import { AnyTxtRecord } from "dns";
 import Device from './Device';
 
 interface IDeviceListProps {

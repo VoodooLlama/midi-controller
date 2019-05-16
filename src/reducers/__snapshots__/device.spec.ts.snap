@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#deviceReducer SELECT_INPUT 1`] = `
+Object {
+  "inputDevices": Array [],
+  "inputDevicesById": Object {},
+  "outputDevices": Array [],
+  "outputDevicesById": Object {},
+  "selectedInputDeviceId": "deviceId",
+  "selectedOutputDeviceId": "",
+}
+`;
+
+exports[`#deviceReducer SET_INPUTS 1`] = `
+Object {
+  "inputDevices": Array [
+    "deviceId",
+  ],
+  "inputDevicesById": Object {
+    "deviceId": Object {
+      "id": "deviceId",
+      "manufacturer": "deviceManufacturer",
+      "name": "deviceName",
+      "state": "disconnected",
+      "type": "input",
+    },
+  },
+  "outputDevices": Array [],
+  "outputDevicesById": Object {},
+  "selectedInputDeviceId": "",
+  "selectedOutputDeviceId": "",
+}
+`;
+
+exports[`#deviceReducer SET_OUTPUTS 1`] = `
+Object {
+  "inputDevices": Array [],
+  "inputDevicesById": Object {},
+  "outputDevices": Array [
+    "deviceId",
+  ],
+  "outputDevicesById": Object {
+    "deviceId": Object {
+      "id": "deviceId",
+      "manufacturer": "deviceManufacturer",
+      "name": "deviceName",
+      "state": "disconnected",
+      "type": "output",
+    },
+  },
+  "selectedInputDeviceId": "",
+  "selectedOutputDeviceId": "",
+}
+`;

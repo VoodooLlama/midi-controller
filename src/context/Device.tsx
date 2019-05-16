@@ -1,88 +1,26 @@
 import React, { createContext, useReducer, useState } from 'react';
 import { Input, Output, MidiPort } from 'webmidi';
 import { string } from 'prop-types';
-
-interface IDeviceState {
-    inputDevices: string[];
-    inputDevicesById: Record<string, Input>;
-    outputDevices: string[];
-    outputDevicesById: Record<string, Output>;
-    selectedInputDeviceId: string;
-    selectedOutputDeviceId: string;
-}
+import deviceReducer from '../reducers/device';
+import { DEVICE_ACTIONS } from '../actions/device';
+import { IDeviceState, initialState } from '../state/device';
 
 export interface IDeviceContext extends IDeviceState {
     setInputDevices: (inputs: Input[]) => void;
     setOutputDevices: (outputs: Output[]) => void;
     selectInputDevice: (deviceId: string) => void;
+    selectOutputDevice: (deviceId: string) => void;
 }
 
-const initialState: IDeviceContext = {
-    inputDevices: [],
-    inputDevicesById: {},
-    outputDevices: [],
-    outputDevicesById: {},
-    selectedInputDeviceId: '',
-    selectedOutputDeviceId: '',
+export const initialContext: IDeviceContext = {
+    ...initialState,
     setInputDevices: () => {},
     setOutputDevices: () => {},
-    selectInputDevice: () => {}
+    selectInputDevice: () => {},
+    selectOutputDevice: () => {}
 };
 
-enum DEVICE_ACTIONS {
-    ADD_INPUT = '@@device/addInput',
-    ADD_OUTPUT = '@@device/addOutput',
-    SET_INPUTS = '@@device/setInputs',
-    SET_OUTPUTS = '@@device/setOutputs',
-    SELECT_INPUT = '@@device/selectInput',
-    SELECT_OUTPUT = '@@device/selectOutput'
-};
-
-export type SetInputDevicesAction = {
-    devices: Input[];
-    type: DEVICE_ACTIONS.SET_INPUTS
-};
-
-export type SetOutputDevicesAction = {
-    devices: Output[];
-    type: DEVICE_ACTIONS.SET_OUTPUTS;
-};
-
-export type SelectInputAction = {
-    deviceId: string;
-    type: DEVICE_ACTIONS.SELECT_INPUT;
-}
-
-type DeviceActions = SetInputDevicesAction
-    | SetOutputDevicesAction
-    | SelectInputAction;
-
-function deviceReducer(state: IDeviceState = initialState, action: DeviceActions): IDeviceState {
-    switch (action.type) {
-        case DEVICE_ACTIONS.SET_INPUTS:
-            const setInputDeviceIds: string[] = action.devices.map((device: Input) => device.id);
-            const setInputDevicesById: Record<string, Input> = action.devices.reduce((deviceMap: Record<string, Input>, device: Input) => {
-                return { ...deviceMap, [ device.id ]: device };
-            }, {});
-
-            return {
-                ...state,
-                inputDevices: setInputDeviceIds,
-                inputDevicesById: setInputDevicesById
-            };
-        case DEVICE_ACTIONS.SELECT_INPUT:
-            const { deviceId: selectedInputDeviceId } = action;
-
-            return {
-                ...state,
-                selectedInputDeviceId
-            };
-        default:
-            return state;
-    }
-}
-
-export const DeviceContext = createContext<IDeviceContext>(initialState);
+export const DeviceContext = createContext<IDeviceContext>(initialContext);
 
 export const DeviceProvider: React.FC<{}> = ({ children }) => {
     const [state, dispatch ] = useReducer(deviceReducer, initialState);
@@ -101,6 +39,8 @@ export const DeviceProvider: React.FC<{}> = ({ children }) => {
         dispatch({ devices, type: DEVICE_ACTIONS.SET_OUTPUTS });
     const dispatchSelectInputDevice = (deviceId: string) =>
         dispatch({ deviceId, type: DEVICE_ACTIONS.SELECT_INPUT });
+    const dispatchSelectOutputDevice = (deviceId: string) =>
+        dispatch({ deviceId, type: DEVICE_ACTIONS.SELECT_OUTPUT });
 
     const devicesContext: IDeviceContext = {
         inputDevices,
@@ -112,7 +52,8 @@ export const DeviceProvider: React.FC<{}> = ({ children }) => {
 
         setInputDevices: dispatchSetInputDevices,
         setOutputDevices: dispatchSetOutputDevices,
-        selectInputDevice: dispatchSelectInputDevice
+        selectInputDevice: dispatchSelectInputDevice,
+        selectOutputDevice: dispatchSelectOutputDevice
     };
 
     return (
