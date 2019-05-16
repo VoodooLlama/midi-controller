@@ -23,7 +23,7 @@ export const initialContext: IDeviceContext = {
 export const DeviceContext = createContext<IDeviceContext>(initialContext);
 
 export const DeviceProvider: React.FC<{}> = ({ children }) => {
-    const [state, dispatch ] = useReducer(deviceReducer, initialState);
+    const [state, dispatch] = useReducer(deviceReducer, initialState);
     const {
         inputDevices,
         inputDevicesById,
@@ -57,8 +57,8 @@ export const DeviceProvider: React.FC<{}> = ({ children }) => {
     };
 
     return (
-        <DeviceContext.Provider value={ devicesContext }>
-            { children }
+        <DeviceContext.Provider value={devicesContext}>
+            {children}
         </DeviceContext.Provider>
     );
 };

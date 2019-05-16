@@ -11,6 +11,17 @@ Object {
 }
 `;
 
+exports[`#deviceReducer SELECT_OUTPUT 1`] = `
+Object {
+  "inputDevices": Array [],
+  "inputDevicesById": Object {},
+  "outputDevices": Array [],
+  "outputDevicesById": Object {},
+  "selectedInputDeviceId": "deviceId",
+  "selectedOutputDeviceId": "",
+}
+`;
+
 exports[`#deviceReducer SET_INPUTS 1`] = `
 Object {
   "inputDevices": Array [

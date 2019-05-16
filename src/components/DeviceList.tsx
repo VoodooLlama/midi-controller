@@ -1,4 +1,4 @@
-import { MidiPort } from "webmidi";
+import { MidiPort } from 'webmidi';
 import React, { Dispatch } from 'react';
 import Device from './Device';
 
@@ -9,26 +9,30 @@ interface IDeviceListProps {
     title: string;
 }
 
-const DeviceList: React.FC<IDeviceListProps> = ({ devices, selectedDeviceId, setSelectedDevice, title }) => {
+const DeviceList: React.FC<IDeviceListProps> = ({
+    devices,
+    selectedDeviceId,
+    setSelectedDevice,
+    title
+}) => {
     if (!devices.length) {
-        return <>No Devices Connected!</>;
+        return <h1 className='title'>{`No ${title} Connected!`}</h1>;
     }
 
     return (
-        <React.Fragment>
-            <h1 className='title'>{ title }</h1>
+        <>
+            <h1 className='title'>{title}</h1>
             <div className='container'>
-                {
-                    devices.map((device: MidiPort) =>
-                        <Device
-                            key={ device.id }
-                            device={ device }
-                            selectedDeviceId={ selectedDeviceId }
-                            setSelectedDevice={ setSelectedDevice } />
-                    )
-                }
+                {devices.map((device: MidiPort) => (
+                    <Device
+                        key={device.id}
+                        device={device}
+                        selectedDeviceId={selectedDeviceId}
+                        setSelectedDevice={setSelectedDevice}
+                    />
+                ))}
             </div>
-        </React.Fragment>
+        </>
     );
 };
 

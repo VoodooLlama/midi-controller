@@ -58,4 +58,15 @@ describe('#deviceReducer', () => {
             } as SelectInputAction)
         ).toMatchSnapshot();
     });
+
+    it('SELECT_OUTPUT', () => {
+        let result;
+
+        expect(
+            deviceReducer(_, {
+                type: DEVICE_ACTIONS.SELECT_INPUT,
+                deviceId: 'deviceId'
+            } as SelectInputAction)
+        ).toMatchSnapshot();
+    });
 });

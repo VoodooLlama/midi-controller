@@ -7,11 +7,11 @@ export enum DEVICE_ACTIONS {
     SET_OUTPUTS = '@@device/setOutputs',
     SELECT_INPUT = '@@device/selectInput',
     SELECT_OUTPUT = '@@device/selectOutput'
-};
+}
 
 export type SetInputDevicesAction = {
     devices: Input[];
-    type: DEVICE_ACTIONS.SET_INPUTS
+    type: DEVICE_ACTIONS.SET_INPUTS;
 };
 
 export type SetOutputDevicesAction = {
@@ -22,14 +22,15 @@ export type SetOutputDevicesAction = {
 export type SelectInputAction = {
     deviceId: string;
     type: DEVICE_ACTIONS.SELECT_INPUT;
-}
+};
 
 export type SelectOutputAction = {
     deviceId: string;
     type: DEVICE_ACTIONS.SELECT_OUTPUT;
-}
+};
 
-export type DeviceActions = SetInputDevicesAction
+export type DeviceActions =
+    | SetInputDevicesAction
     | SetOutputDevicesAction
     | SelectInputAction
     | SelectOutputAction;

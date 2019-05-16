@@ -6,9 +6,11 @@ interface ILoadingProps {
 }
 
 const Loading: React.FC<ILoadingProps> = ({ children, isLoaded }) => {
-    return isLoaded
-        ? <>{ children }</>
-        : <div className="loading" >LOADING...</div>
+    return isLoaded ? (
+        <>{children}</>
+    ) : (
+        <div className='loading'>LOADING...</div>
+    );
 };
 
 export default Loading;

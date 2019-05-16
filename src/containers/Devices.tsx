@@ -20,11 +20,11 @@ const Devices: React.FC = () => {
 
     useEffect(() => {
         function hasDeviceArrayChanged(source: MidiPort[], target: string[]) {
-            const currentDevices = source.map((port) => port.id).sort();
+            const currentDevices = source.map(port => port.id).sort();
             const existingDevices = target.sort();
 
-            return currentDevices.some((deviceId, index) =>
-                deviceId !== existingDevices[ index ]
+            return currentDevices.some(
+                (deviceId, index) => deviceId !== existingDevices[index]
             );
         }
 
@@ -37,21 +37,27 @@ const Devices: React.FC = () => {
         }
     });
 
-    const inputs: Input[] = inputDevices.map((deviceId: string) => inputDevicesById[ deviceId ]);
-    const outputs: Output[] = outputDevices.map((deviceId: string) => outputDevicesById[ deviceId ]);
+    const inputs: Input[] = inputDevices.map(
+        (deviceId: string) => inputDevicesById[deviceId]
+    );
+    const outputs: Output[] = outputDevices.map(
+        (deviceId: string) => outputDevicesById[deviceId]
+    );
 
     return (
         <section className='device-container'>
             <DeviceList
-                devices={ inputs }
-                title={ 'Input Devices' }
-                selectedDeviceId={ selectedInputDeviceId }
-                setSelectedDevice={ selectInputDevice } />
+                devices={inputs}
+                title={'Input Devices'}
+                selectedDeviceId={selectedInputDeviceId}
+                setSelectedDevice={selectInputDevice}
+            />
             <DeviceList
-                devices={ outputs }
-                title={ 'Output Devices' }
-                selectedDeviceId={ selectedOutputDeviceId }
-                setSelectedDevice={ selectOutputDevice } />
+                devices={outputs}
+                title={'Output Devices'}
+                selectedDeviceId={selectedOutputDeviceId}
+                setSelectedDevice={selectOutputDevice}
+            />
         </section>
     );
 };
