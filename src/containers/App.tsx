@@ -6,17 +6,23 @@ import useEnableWebMIDI from '../hooks/useEnableWebMIDI';
 import { DeviceContext, DeviceProvider } from '../context/Device';
 
 const App: React.FC = () => {
-  const isMIDIEnabled: boolean = useEnableWebMIDI();
+    const isMIDIEnabled: boolean = useEnableWebMIDI();
 
-  return (
-    <main className="app">
-      <Loading isLoaded={ isMIDIEnabled }>
+    const renderContent = () => (
         <DeviceProvider>
-          <Devices />
+            <Devices />
         </DeviceProvider>
-      </Loading>
-    </main>
-  );
+    );
+
+    return (
+        <main className='app'>
+            {
+                isMIDIEnabled
+                    ? renderContent()
+                    : <Loading />
+            }
+        </main>
+    );
 };
 
 export default App;

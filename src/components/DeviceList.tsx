@@ -20,9 +20,9 @@ const DeviceList: React.FC<IDeviceListProps> = ({
     }
 
     return (
-        <>
+        <div className='device-list'>
             <h1 className='title'>{title}</h1>
-            <div className='container'>
+            <div className='device-list-container'>
                 {devices.map((device: MidiPort) => (
                     <Device
                         key={device.id}
@@ -32,7 +32,7 @@ const DeviceList: React.FC<IDeviceListProps> = ({
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

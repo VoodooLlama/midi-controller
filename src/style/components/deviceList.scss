@@ -1,0 +1,15 @@
+.device-list {
+    display: flex;
+
+    h1 {
+        text-transform: uppercase;
+    }
+
+    &-container {
+        display: flex;
+
+        .device {
+            margin: 10px;
+        }
+    }
+}

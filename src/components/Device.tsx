@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { Input, MidiPort, Output } from 'webmidi';
@@ -15,11 +15,24 @@ const Device: React.FC<IDeviceProps> = ({
     setSelectedDevice,
     selectedDeviceId
 }) => {
+    const [isExpanded, setExpandedState] = useState(true);
     const { connection, id, manufacturer, name } = device;
     const selected = selectedDeviceId === id;
     const deviceClass = classnames('device', {
         selected
     });
+    const detailsClass = classnames('details', {
+        hidden: !isExpanded
+    });
+
+    function toggleExpandedState() {
+        setExpandedState(!isExpanded);
+    }
+
+    function getExpandButtonText() {
+        return isExpanded ? 'Hide' : 'Show'
+    }
+
     const selectDeviceHandler = () => {
         if (!selected) {
             setSelectedDevice(id);
@@ -29,11 +42,14 @@ const Device: React.FC<IDeviceProps> = ({
     return (
         <article className={deviceClass} onClick={selectDeviceHandler}>
             <h3>{name}</h3>
-            <ul>
+            <ul className={detailsClass}>
                 <li>Manufacturer: {manufacturer}</li>
                 <li>Device ID: {id}</li>
                 <li>Connection: {connection}</li>
             </ul>
+            <button onClick={toggleExpandedState}>
+                { getExpandButtonText() }
+            </button>
         </article>
     );
 };

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
-import webmidi, { MidiPort, Input, Output } from 'webmidi';
+import webmidi, { MidiPort, Input, Output, InputEvents } from 'webmidi';
 import DeviceList from '../components/DeviceList';
 import { IDeviceContext, DeviceContext } from '../context/Device';
+import { useProgramChangeInputListener } from '../hooks/useProgamChangeInputListener';
 
 const Devices: React.FC = () => {
     const {
@@ -17,6 +18,8 @@ const Devices: React.FC = () => {
         setInputDevices,
         setOutputDevices
     } = useContext<IDeviceContext>(DeviceContext);
+
+    useProgramChangeInputListener(inputDevicesById[ selectedInputDeviceId ]);
 
     useEffect(() => {
         function hasDeviceArrayChanged(source: MidiPort[], target: string[]) {
