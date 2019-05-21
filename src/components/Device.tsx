@@ -15,7 +15,7 @@ const Device: React.FC<IDeviceProps> = ({
     setSelectedDevice,
     selectedDeviceId
 }) => {
-    const [isExpanded, setExpandedState] = useState(true);
+    const [isExpanded, setExpandedState] = useState(false);
     const { connection, id, manufacturer, name } = device;
     const selected = selectedDeviceId === id;
     const deviceClass = classnames('device', {

@@ -19,18 +19,22 @@ const DeviceList: React.FC<IDeviceListProps> = ({
         return <h1 className='title'>{`No ${title} Connected!`}</h1>;
     }
 
+    const renderDevices = () => {
+        return devices.map((device: MidiPort) => (
+            <Device
+                key={device.id}
+                device={device}
+                selectedDeviceId={selectedDeviceId}
+                setSelectedDevice={setSelectedDevice}
+            />
+        ));
+    }
+
     return (
         <div className='device-list'>
             <h1 className='title'>{title}</h1>
             <div className='device-list-container'>
-                {devices.map((device: MidiPort) => (
-                    <Device
-                        key={device.id}
-                        device={device}
-                        selectedDeviceId={selectedDeviceId}
-                        setSelectedDevice={setSelectedDevice}
-                    />
-                ))}
+                {renderDevices()}
             </div>
         </div>
     );

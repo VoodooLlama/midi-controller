@@ -16,9 +16,13 @@ export function useProgramChangeInputListener(
 ) {
     useEffect(() => {
         if (input) {
+            console.log('Adding event listener for programchange');
+
             input.addListener('programchange', 'all', callback);
 
             return () => {
+                console.log('Removing event listener for programchange');
+
                 input.removeListener('programchange', 'all');
             };
         }

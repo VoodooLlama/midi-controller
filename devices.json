@@ -1,0 +1,77 @@
+{
+    "devices": [
+        {
+            "id": "chase-bliss-brothers",
+            "name": "Brothers",
+            "description": "Analog Gainstage",
+            "manufacturer": "Chase Bliss Audio",
+            "listenChannel": 2,
+            "ccMap": {
+                "14": {
+                    "name": "Gain A",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "15": {
+                    "name": "Master",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "16": {
+                    "name": "Gain B",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "17": {
+                    "name": "Tone A",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "18": {
+                    "name": "Mix / Stack",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "19": {
+                    "name": "Tone B",
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                },
+                "21": {
+                    "name": "Channel A Effect Select",
+                    "description": "Sending value 1 selects Boost. Sending value 2 selects Drive. Sending value 3 selects Fuzz."
+                },
+                "22": {
+                    "name": "PARA, A > B, B > A Select",
+                    "description": "Sending value 1 selects PARA. Sending value 2 selects A >> B. Sending value 3 selects B >> A."
+                },
+                "23": {
+                    "name": "Channel B Effect Select",
+                    "description": "Sending value 1 selects Fuzz. Sending value 2 selects Drive. Sending value 3 selects Boost."
+                },
+                "100": {
+                    "name": "Expression Pedal",
+                    "description": "Sending a value 0 would be equivalent to an expression pedal being completely “off”, sending 127 is equivalent to a fully depressed expression pedal. All numbers in between correspond to knob positions in between those extremes. As always, the dip switches on the pedal select which parameter(s) are being controlled via expression."
+                },
+                "102": {
+                    "name": "Bypass Switch",
+                    "description": "Sending value 127 engages the last saved channels on the pedal. Sending value 0 bypasses both channels."
+                },
+                "103": {
+                    "name": "Bypass Switch",
+                    "description": "Sending value 127 engages both channels on the pedal. Sending value 85 engages channel A and bypasses channel B. Sending value 45 engages channel B and bypasses channel A. Sending value 0 bypasses both channels."
+                }
+            }
+        },
+        {
+            "id": "meris-enzo",
+            "name": "Enzo",
+            "manufacturer": "Meris",
+            "listenChannel": 1,
+            "ccMap": {
+                "4": {
+                    "name": "Expression Pedal",
+                    "description": "0 to 127"
+                },
+                "9": {
+                    "name": "Envelope Type",
+                    "description": "0 to 63 = Triggered Envelope, 64 to 127 = Envelope Follower"
+                }
+            }
+        }
+    ]
+}
