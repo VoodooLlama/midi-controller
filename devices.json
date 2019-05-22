@@ -55,7 +55,7 @@
                 {
                     "name": "Expression Pedal",
                     "description": "Sending a value 0 would be equivalent to an expression pedal being completely “off”, sending 127 is equivalent to a fully depressed expression pedal. All numbers in between correspond to knob positions in between those extremes. As always, the dip switches on the pedal select which parameter(s) are being controlled via expression.",
-                    "value": 102
+                    "value": 100
                 },
                 {
                     "name": "Bypass Switch",

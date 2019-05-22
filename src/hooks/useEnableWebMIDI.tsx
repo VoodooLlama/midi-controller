@@ -15,6 +15,8 @@ function useEnableWebMIDI(): boolean {
                 setEnabledState(false);
             }
 
+            console.log('Enabled WebMIDI!');
+
             setEnabledState(true);
         }
 
@@ -23,7 +25,7 @@ function useEnableWebMIDI(): boolean {
         return () => {
             webmidi.disable();
         };
-    });
+    }, []);
 
     return enabled;
 }

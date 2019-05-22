@@ -20,7 +20,6 @@ const Devices: React.FC = () => {
     } = useContext<IDeviceContext>(DeviceContext);
 
     useProgramChangeInputListener(inputDevicesById[ selectedInputDeviceId ]);
-
     useEffect(() => {
         function hasDeviceArrayChanged(source: MidiPort[], target: string[]) {
             const currentDevices = source.map(port => port.id).sort();
@@ -32,13 +31,17 @@ const Devices: React.FC = () => {
         }
 
         if (hasDeviceArrayChanged(webmidi.inputs, inputDevices)) {
+            console.log('Setting input devices!');
+
             setInputDevices(webmidi.inputs);
         }
 
         if (hasDeviceArrayChanged(webmidi.outputs, outputDevices)) {
+            console.log('Setting output devices!');
+
             setOutputDevices(webmidi.outputs);
         }
-    });
+    }, [webmidi.inputs, webmidi.outputs]);
 
     const inputs: Input[] = inputDevices.map(
         (deviceId: string) => inputDevicesById[deviceId]

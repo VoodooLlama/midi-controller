@@ -7,7 +7,14 @@ interface IPedalProps {
 }
 
 const Pedal: React.FC<IPedalProps> = ({ pedal }) => {
-    const { description, name, manufacturer, listenChannel, ccValues } = pedal;
+    const {
+        description,
+        id,
+        name,
+        manufacturer,
+        listenChannel,
+        ccValues
+    } = pedal;
 
     return (
         <div className='pedal'>
@@ -22,7 +29,7 @@ const Pedal: React.FC<IPedalProps> = ({ pedal }) => {
                 <div>CC Values</div>
                 {ccValues.map(
                     ({ name: ccName, description: ccDescription, value }) => (
-                        <article className='cc-value'>
+                        <article className='cc-value' key={`${id}${value}`}>
                             <h3>{value}</h3>
                             <div className='cc-value-details'>
                                 <div>Name: {ccName}</div>
