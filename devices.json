@@ -6,72 +6,172 @@
             "description": "Analog Gainstage",
             "manufacturer": "Chase Bliss Audio",
             "listenChannel": 2,
-            "ccMap": {
-                "14": {
+            "ccValues": [
+                {
                     "name": "Gain A",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 14
                 },
-                "15": {
+                {
                     "name": "Master",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 15
                 },
-                "16": {
+                {
                     "name": "Gain B",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 16
                 },
-                "17": {
+                {
                     "name": "Tone A",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 17
                 },
-                "18": {
+                {
                     "name": "Mix / Stack",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 18
                 },
-                "19": {
+                {
                     "name": "Tone B",
-                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes."
+                    "description": "Sending a value 0 would be equivalent to the knob being completely counter clock-wise, sending 127 is equivalent to fully clock-wise. All numbers in between correspond to knob positions in between those extremes.",
+                    "value": 19
                 },
-                "21": {
+                {
                     "name": "Channel A Effect Select",
-                    "description": "Sending value 1 selects Boost. Sending value 2 selects Drive. Sending value 3 selects Fuzz."
+                    "description": "Sending value 1 selects Boost. Sending value 2 selects Drive. Sending value 3 selects Fuzz.",
+                    "value": 21
                 },
-                "22": {
+                {
                     "name": "PARA, A > B, B > A Select",
-                    "description": "Sending value 1 selects PARA. Sending value 2 selects A >> B. Sending value 3 selects B >> A."
+                    "description": "Sending value 1 selects PARA. Sending value 2 selects A >> B. Sending value 3 selects B >> A.",
+                    "value": 22
                 },
-                "23": {
+                {
                     "name": "Channel B Effect Select",
-                    "description": "Sending value 1 selects Fuzz. Sending value 2 selects Drive. Sending value 3 selects Boost."
+                    "description": "Sending value 1 selects Fuzz. Sending value 2 selects Drive. Sending value 3 selects Boost.",
+                    "value": 23
                 },
-                "100": {
+                {
                     "name": "Expression Pedal",
-                    "description": "Sending a value 0 would be equivalent to an expression pedal being completely “off”, sending 127 is equivalent to a fully depressed expression pedal. All numbers in between correspond to knob positions in between those extremes. As always, the dip switches on the pedal select which parameter(s) are being controlled via expression."
+                    "description": "Sending a value 0 would be equivalent to an expression pedal being completely “off”, sending 127 is equivalent to a fully depressed expression pedal. All numbers in between correspond to knob positions in between those extremes. As always, the dip switches on the pedal select which parameter(s) are being controlled via expression.",
+                    "value": 102
                 },
-                "102": {
+                {
                     "name": "Bypass Switch",
-                    "description": "Sending value 127 engages the last saved channels on the pedal. Sending value 0 bypasses both channels."
+                    "description": "Sending value 127 engages the last saved channels on the pedal. Sending value 0 bypasses both channels.",
+                    "value": 102
                 },
-                "103": {
+                {
                     "name": "Bypass Switch",
-                    "description": "Sending value 127 engages both channels on the pedal. Sending value 85 engages channel A and bypasses channel B. Sending value 45 engages channel B and bypasses channel A. Sending value 0 bypasses both channels."
+                    "description": "Sending value 127 engages both channels on the pedal. Sending value 85 engages channel A and bypasses channel B. Sending value 45 engages channel B and bypasses channel A. Sending value 0 bypasses both channels.",
+                    "value": 103
                 }
-            }
+            ]
         },
         {
             "id": "meris-enzo",
             "name": "Enzo",
+            "description": "Multi-Voice Synthesizer",
             "manufacturer": "Meris",
             "listenChannel": 1,
-            "ccMap": {
-                "4": {
+            "ccValues": [
+                {
                     "name": "Expression Pedal",
-                    "description": "0 to 127"
+                    "description": "0 to 127",
+                    "value": 4
                 },
-                "9": {
+                {
                     "name": "Envelope Type",
-                    "description": "0 to 63 = Triggered Envelope, 64 to 127 = Envelope Follower"
+                    "description": "0 to 63 = Triggered Envelope, 64 to 127 = Envelope Follower",
+                    "value": 9
+                },
+                {
+                    "name": "Bypass",
+                    "description": "0 to 63 = FX Bypass, 64 to 127 = FX Enable",
+                    "value": 14
+                },
+                {
+                    "name": "Temp (10 ms intervals)",
+                    "description": "0 to 120",
+                    "value": 15
+                },
+                {
+                    "name": "Pitch",
+                    "description": "0 to 127",
+                    "value": 16
+                },
+                {
+                    "name": "Filter",
+                    "description": "0 to 127",
+                    "value": 17
+                },
+                {
+                    "name": "Mix",
+                    "description": "0 to 127",
+                    "value": 18
+                },
+                {
+                    "name": "Sustain",
+                    "description": "0 to 127",
+                    "value": 19
+                },
+                {
+                    "name": "Filter Envelope",
+                    "description": "0 to 127",
+                    "value": 20
+                },
+                {
+                    "name": "Modulation",
+                    "description": "0 to 127",
+                    "value": 21
+                },
+                {
+                    "name": "Portamento",
+                    "description": "0 to 127",
+                    "value": 22
+                },
+                {
+                    "name": "Filter Type",
+                    "description": "0 to 127",
+                    "value": 23
+                },
+                {
+                    "name": "Delay Level",
+                    "description": "0 to 127",
+                    "value": 24
+                },
+                {
+                    "name": "Ring Modulation",
+                    "description": "0 to 127",
+                    "value": 25
+                },
+                {
+                    "name": "Filter Bandwidth",
+                    "description": "0 to 127",
+                    "value": 26
+                },
+                {
+                    "name": "Delay Feedback",
+                    "description": "0 to 127",
+                    "value": 27
+                },
+                {
+                    "name": "Tap",
+                    "description": "127 = Tap Press",
+                    "value": 28
+                },
+                {
+                    "name": "Synth Mode",
+                    "description": "0 - 31 = Dry, 32 - 63 = Mono Synth, 64 - 95 = Arp Synth, 96 - 127 = Poly Synth",
+                    "value": 29
+                },
+                {
+                    "name": "Synth Waveshape",
+                    "description": "0 - 63 = Sawtooth, 64 - 127 = Mono Synth",
+                    "value": 30
                 }
-            }
+            ]
         }
     ]
 }

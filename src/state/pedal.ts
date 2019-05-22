@@ -1,5 +1,5 @@
 import { IMidiChannel } from 'webmidi';
-import { IMIDIControlMap } from '../types/ControlChangeMap';
+import { IMIDIControlChangeEntry } from '../types/pedal';
 
 export interface IPedal {
     id: string;
@@ -7,5 +7,5 @@ export interface IPedal {
     description: string;
     manufacturer: string;
     listenChannel: IMidiChannel;
-    ccMap: IMIDIControlMap;
+    ccValues: IMIDIControlChangeEntry[];
 }
