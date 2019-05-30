@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 
 export function useProgramChangeInputListener(
     input: Input | undefined,
-    callback = defaultProgramchangeListener
+    callback = defaultProgramChangeListener
 ) {
     useEffect(() => {
         if (input) {
             console.log('Adding event listener for programchange');
 
-            input.addListener('programchange', 'all', callback);
+            input.on('programchange', 'all', callback);
 
             return () => {
                 console.log('Removing event listener for programchange');
@@ -29,6 +29,6 @@ export function useProgramChangeInputListener(
     }, [input]);
 }
 
-function defaultProgramchangeListener(event: InputEventProgramchange) {
+function defaultProgramChangeListener(event: InputEventProgramchange) {
     console.log(`PC\t${ event.channel }\t${ event.value }`);
 }

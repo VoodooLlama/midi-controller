@@ -51,7 +51,7 @@ const Devices: React.FC = () => {
     );
 
     return (
-        <section className='device-container'>
+        <section className='device-list-container'>
             <DeviceList
                 devices={inputs}
                 title={'Input Devices'}

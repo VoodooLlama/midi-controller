@@ -8,12 +8,12 @@ export interface IMIDIControlChangeEntry {
     description: string;
 
     /**
-     * Midi Parameter Name
+     * MIDI Parameter Name
      */
     name: string;
 
     /**
-     * Control Change (CC) #
+     * MIDI Control Change (CC) (between 0 and 127)
      */
     value: number;
 }

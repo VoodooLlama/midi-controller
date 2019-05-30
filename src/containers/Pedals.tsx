@@ -19,9 +19,9 @@ const Pedals: React.FC = () => {
     };
 
     return (
-        <div className='pedals-container'>
+        <section className='pedals-container'>
             {pedalData ? <>{renderPedalData(pedalData)}</> : <>Loading</>}
-        </div>
+        </section>
     );
 };
 

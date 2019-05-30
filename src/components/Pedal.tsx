@@ -17,7 +17,7 @@ const Pedal: React.FC<IPedalProps> = ({ pedal }) => {
     } = pedal;
 
     return (
-        <div className='pedal'>
+        <article className='pedal'>
             <section className='details'>
                 <h2>
                     {manufacturer} {name}
@@ -39,7 +39,7 @@ const Pedal: React.FC<IPedalProps> = ({ pedal }) => {
                     )
                 )}
             </section>
-        </div>
+        </article>
     );
 };
 
