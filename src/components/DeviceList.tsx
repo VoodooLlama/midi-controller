@@ -31,12 +31,12 @@ const DeviceList: React.FC<IDeviceListProps> = ({
     }
 
     return (
-        <div className='device-list'>
+        <section className='device-list section'>
             <h1 className='title'>{title}</h1>
             <div className='device-list-container'>
                 {renderDevices()}
             </div>
-        </div>
+        </section>
     );
 };
 

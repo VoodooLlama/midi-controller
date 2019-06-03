@@ -18,7 +18,7 @@ const PedalKnob: React.FC<IPedalKnobProps> = ({
 
     const onSelectKnobValueHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
         if (currentError) {
-            setError('');
+            setCurrentError('');
         }
 
         try {
@@ -26,7 +26,7 @@ const PedalKnob: React.FC<IPedalKnobProps> = ({
             const newKnobValue = parseInt(value);
 
             if (newKnobValue && newKnobValue >= 0 && newKnobValue <= 127) {
-                return setKnobValue(knob)
+                return setKnobValue(newKnobValue)
             }
         }
         catch(e) {
