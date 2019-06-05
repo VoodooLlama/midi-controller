@@ -1,7 +1,7 @@
 export type IControlChangeValue = number;
 
 /**
- * Represents an enumeration of values which can be sent for a CC parameter
+ * Represents a labeled set of values which can be sent as a CC parameter
  */
 export type IControlChangeEnumeration = {
     description: string;
@@ -9,14 +9,13 @@ export type IControlChangeEnumeration = {
 };
 
 /**
- * Range of possible CC values to be sent
+ * Range of unlabeled CC values to be sent (e.g. [0, 127])
  */
 export type IControlChangeValueRange = IControlChangeValue[];
 
 /**
- *
+ * Represents a CC Parameter along with the collection of valid values which can be received
  */
-
 export interface IMIDIControlChangeEntry {
     /**
      * Human-readable control change description
@@ -29,12 +28,12 @@ export interface IMIDIControlChangeEntry {
     name: string;
 
     /**
-     * MIDI Control Change Number (CC#) (between 0 and 127)
+     * MIDI Control Change Number (CC#) (0..127)
      */
     value: IControlChangeValue;
 
     /**
-     * MIDI Value Range
+     * MIDI Value to be sent to the CC# (0..127)
      */
     range?: IControlChangeValueRange | IControlChangeEnumeration[];
 }

@@ -22,7 +22,7 @@ export const initialContext: IDeviceContext = {
 
 export const DeviceContext = createContext<IDeviceContext>(initialContext);
 
-export const DeviceProvider: React.FC<{}> = ({ children }) => {
+export const DeviceProvider: React.FC = ({ children }) => {
     const [state, dispatch] = useReducer(deviceReducer, initialState);
     const {
         inputDevices,
