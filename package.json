@@ -5,7 +5,7 @@
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack -p",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --hot --inline",
     "test": "jest",
     "test:dev": "jest --coverage -o --watch"
   },
@@ -15,6 +15,7 @@
     "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.13",
     "@types/webpack": "^4.4.31",
+    "@types/webpack-env": "^1.13.9",
     "bulma": "^0.7.5",
     "classnames": "^2.2.6",
     "css-loader": "^2.1.1",
@@ -24,6 +25,7 @@
     "node-sass": "^4.12.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-hot-loader": "^4.9.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-jest": "^24.0.2",
