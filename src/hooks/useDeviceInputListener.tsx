@@ -7,6 +7,7 @@ import {
     InputEventControlchange,
     InputEventProgramchange
 } from 'webmidi';
+import useLog from './useLog';
 
 type InputEventType = keyof InputEvents;
 type ValidInputEvents = InputEventControlchange | InputEventProgramchange;

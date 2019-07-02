@@ -4,7 +4,7 @@ import { IPedal } from '../state/pedal';
 import Pedal from '../components/Pedal';
 
 const Pedals: React.FC = () => {
-    let [pedalData, setPedalData] = useState<IPedal[]>();
+    let [pedalData, setPedalData] = useState<IPedal[]>([]);
 
     useEffect(() => {
         retrievePedalData().then(({ devices }) => {
@@ -20,7 +20,7 @@ const Pedals: React.FC = () => {
 
     return (
         <section className='pedals-container'>
-            {pedalData ? <>{renderPedalData(pedalData)}</> : <>Loading</>}
+            {pedalData ? <>{ renderPedalData(pedalData) }</> : <>Loading</>}
         </section>
     );
 };

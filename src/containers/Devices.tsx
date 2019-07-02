@@ -4,6 +4,7 @@ import webmidi, { MidiPort, Input, Output, InputEvents } from 'webmidi';
 import DeviceList from '../components/DeviceList';
 import { IDeviceContext, DeviceContext } from '../context/Device';
 import { useProgramChangeInputListener } from '../hooks/useProgamChangeInputListener';
+import { useInfoLog } from '../hooks/useLog';
 
 const Devices: React.FC = () => {
     const {
@@ -31,13 +32,13 @@ const Devices: React.FC = () => {
         }
 
         if (hasDeviceArrayChanged(webmidi.inputs, inputDevices)) {
-            console.log('Setting input devices!');
+            useInfoLog('Setting input devices!');
 
             setInputDevices(webmidi.inputs);
         }
 
         if (hasDeviceArrayChanged(webmidi.outputs, outputDevices)) {
-            console.log('Setting output devices!');
+            useInfoLog('Setting output devices!');
 
             setOutputDevices(webmidi.outputs);
         }

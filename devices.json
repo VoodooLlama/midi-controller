@@ -92,7 +92,7 @@
                     "value": 14
                 },
                 {
-                    "name": "Temp (10 ms intervals)",
+                    "name": "Tempo (10 ms intervals)",
                     "description": "0 to 120",
                     "value": 15
                 },

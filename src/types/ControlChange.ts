@@ -7,11 +7,16 @@ export type IControlChangeEnumeration = {
     description: string;
     value: IControlChangeValue;
 };
+type IControlChangeEnumerationRange = IControlChangeEnumeration[];
 
 /**
  * Range of unlabeled CC values to be sent (e.g. [0, 127])
  */
-export type IControlChangeValueRange = IControlChangeValue[];
+type IControlChangeValueRange = IControlChangeValue[];
+
+type IControlChangeRange =
+    | IControlChangeValueRange
+    | IControlChangeEnumerationRange;
 
 /**
  * Represents a CC Parameter along with the collection of valid values which can be received
@@ -35,10 +40,40 @@ export interface IMIDIControlChangeEntry {
     /**
      * MIDI Value to be sent to the CC# (0..127)
      */
-    range?: IControlChangeValueRange | IControlChangeEnumeration[];
+    range?: IControlChangeRange;
 }
 
-export function isControlChangeValue(value: number): value is IControlChangeValue {
+// export function getControlChangeRange(range: IControlChangeRange) {
+//     let max: IControlChangeValue = 127;
+//     let min: IControlChangeValue = 0;
+
+//     if (isControlChangeValueRange(range)) {
+//         min = range[0];
+//         max = range[1];
+//     } else {
+//         // Range of enumerations
+//         min = 127;
+//         max = 0;
+
+//         for (const ccEntry of range) {
+//             const { value } = ccEntry;
+
+//             if (value < min) {
+//                 min = value;
+//             }
+
+//             if (value > max) {
+//                 max = value;
+//             }
+//         }
+//     }
+
+//     return { min, max };
+// }
+
+export function isControlChangeValue(
+    value: number
+): value is IControlChangeValue {
     return value >= 0 && value <= 127;
 }
 

@@ -30,7 +30,7 @@ const Device: React.FC<IDeviceProps> = ({
     }
 
     function getExpandButtonText() {
-        return isExpanded ? 'Hide' : 'Show'
+        return isExpanded ? 'Hide' : 'Show';
     }
 
     const selectDeviceHandler = () => {
@@ -48,7 +48,7 @@ const Device: React.FC<IDeviceProps> = ({
                 <li>Connection: {connection}</li>
             </ul>
             <button onClick={toggleExpandedState}>
-                { getExpandButtonText() }
+                {getExpandButtonText()}
             </button>
         </article>
     );

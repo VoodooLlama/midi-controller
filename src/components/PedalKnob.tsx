@@ -1,48 +1,43 @@
 import React, { useState, ChangeEvent } from 'react';
-import { IMIDIControlChangeEntry } from '../types/pedal';
+import { IMIDIControlChangeEntry } from '../types/ControlChange';
 import { number } from 'prop-types';
 
 interface IPedalKnobProps {
-    ccValue: IMIDIControlChangeEntry;
-    initialValue: number;
-    onSetKnobValue?: (value: number) => void;
+    ccEntry: IMIDIControlChangeEntry;
+    onSetKnobValueCallback?: (value: number) => void;
 }
 
 const PedalKnob: React.FC<IPedalKnobProps> = ({
-    ccValue,
-    initialValue,
-    onSetKnobValue
+    ccEntry,
+    onSetKnobValueCallback
 }) => {
-    const [currentKnobValue, setKnobValue] = useState<number>(initialValue);
-    const [currentError, setCurrentError] = useState<string>('');
+    const [currentKnobValue, setKnobValue] = useState<number>(0);
 
-    const onSelectKnobValueHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
-        if (currentError) {
-            setCurrentError('');
+    const onSelectKnobValueHandler = ({
+        target
+    }: ChangeEvent<HTMLInputElement>) => {
+        const { value: targetValue } = target;
+        const knobValue = Number(targetValue);
+
+        setKnobValue(knobValue);
+
+        if (onSetKnobValueCallback) {
+            onSetKnobValueCallback(knobValue);
         }
-
-        try {
-            const { value } = target;
-            const newKnobValue = parseInt(value);
-
-            if (newKnobValue && newKnobValue >= 0 && newKnobValue <= 127) {
-                return setKnobValue(newKnobValue)
-            }
-        }
-        catch(e) {
-            setCurrentError('An error occurred attempting to parse the number you entered!');
-        }
-
-        setCurrentError('Enter a valid number inclusively between 0 and 127');
     };
+
+    if (!currentKnobValue) {
+        return <div className='loading' />;
+    }
 
     return (
         <div className='pedal-knob'>
-            {currentError && (
-                <div className='pedal-input-error'>{currentError}</div>
-            )}
-
-            <input type='input' onChange={ onSelectKnobValueHandler } />
+            <input
+                min={0}
+                max={127}
+                onChange={onSelectKnobValueHandler}
+                type='range'
+            />
         </div>
     );
 };

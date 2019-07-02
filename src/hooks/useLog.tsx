@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 enum LogLevel {
     INFO = 'INFO',
@@ -7,9 +7,9 @@ enum LogLevel {
 }
 
 const LogLevelValue = {
-    [ LogLevel.INFO ]: 0,
-    [ LogLevel.WARN ]: 1,
-    [ LogLevel.ERROR ]: 2
+    [LogLevel.INFO]: 0,
+    [LogLevel.WARN]: 1,
+    [LogLevel.ERROR]: 2
 };
 
 const DEFAULT_LOG_LEVEL: Readonly<LogLevel> = LogLevel.INFO;
@@ -19,28 +19,41 @@ const DEFAULT_LOG_LEVEL: Readonly<LogLevel> = LogLevel.INFO;
  * @param message
  * @param level
  */
-function useLog(message: string, level: LogLevel = LogLevel.INFO) {
-    const [ logLevelThreshold, setLogLevelThreshold ] = useState<LogLevel>(DEFAULT_LOG_LEVEL);
+export function useLogger(level: LogLevel = LogLevel.INFO) {
+    const [logLevelThreshold, setLogLevelThreshold] = useState<LogLevel>(
+        DEFAULT_LOG_LEVEL
+    );
 
-    useEffect(() => {
-        if (shouldLogMessage(level, logLevelThreshold)) {
-            console.log(`${ level } | ${ new Date().toLocaleString() } | ${ message }`);
-        }
-    });
+    function logMessage(message: string) {
+        useEffect(() => {
+            if (shouldLogMessage(level, logLevelThreshold)) {
+                console.log(
+                    `${level} | ${new Date().toLocaleString()} | ${message}`
+                );
+            }
+        }, []);
+    }
 
-    return setLogLevelThreshold;
+    return logMessage;
 }
 
-function shouldLogMessage(messageLogLevel: LogLevel, logLevelThreshold: LogLevel) {
+function shouldLogMessage(
+    messageLogLevel: LogLevel,
+    logLevelThreshold: LogLevel
+) {
     return LogLevelValue[messageLogLevel] <= LogLevelValue[logLevelThreshold];
 }
 
-function useWarningLog(message: string) {
-    useLog(message, LogLevel.ERROR);
+export function useInfoLog(message: string) {
+    return useLogger(LogLevel.INFO);
 }
 
-function useErrorLog(message: string) {
-    useLog(message, LogLevel.ERROR);
+export function useWarningLog(message: string) {
+    return useLogger(LogLevel.WARN);
 }
 
-export default useLog;
+export function useErrorLog(message: string) {
+    return useLogger(LogLevel.ERROR);
+}
+
+export default useLogger;
