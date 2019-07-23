@@ -34,3 +34,47 @@ export type DeviceActions =
     | SetOutputDevicesAction
     | SelectInputAction
     | SelectOutputAction;
+
+/**
+ * Set the currently available MIDI Output Devices
+ * @param devices MIDI Input Devices
+ */
+export function setInputDevices(devices: Input[]): SetInputDevicesAction {
+    return {
+        devices,
+        type: DEVICE_ACTIONS.SET_INPUTS
+    };
+};
+
+/**
+ * Sets the currently available MIDI Output Devices
+ * @param devices MIDI Output Devices
+ */
+export function setOutputDevices(devices: Output[]): SetOutputDevicesAction {
+    return {
+        devices,
+        type: DEVICE_ACTIONS.SET_OUTPUTS
+    }
+}
+
+/**
+ * Selects a MIDI input for use
+ * @param deviceId Target MIDI Device ID
+ */
+export function selectInput(deviceId: string): SelectInputAction {
+    return {
+        deviceId,
+        type: DEVICE_ACTIONS.SELECT_INPUT
+    };
+}
+
+/**
+ * Selects a MIDI output for use
+ * @param deviceId Target MIDI Device ID
+ */
+export function selectOutput(deviceId: string): SelectOutputAction {
+    return {
+        deviceId,
+        type: DEVICE_ACTIONS.SELECT_OUTPUT
+    };
+}
