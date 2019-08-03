@@ -1,25 +1,33 @@
 import React, { useContext, useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
+import { Dispatch } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 import webmidi, { MidiPort, Input, Output, InputEvents } from 'webmidi';
 import DeviceList from '../components/DeviceList';
 import { IDeviceContext, DeviceContext } from '../context/Device';
 import { useProgramChangeInputListener } from '../hooks/useProgamChangeInputListener';
 import { useInfoLog } from '../hooks/useLog';
+import { IRootState } from '../state/index';
+import { IDeviceState } from 'state/device';
+import {
+    selectInput,
+    selectOutput,
+    setInputDevices,
+    setOutputDevices,
+    DeviceActions
+} from '../actions/device';
 
 const Devices: React.FC = () => {
+    const log = useInfoLog();
+    const dispatch = useDispatch<Dispatch<DeviceActions>>();
     const {
         inputDevices,
         inputDevicesById,
         outputDevices,
         outputDevicesById,
         selectedInputDeviceId,
-        selectedOutputDeviceId,
-        selectInputDevice,
-        selectOutputDevice,
-        setInputDevices,
-        setOutputDevices
-    } = useContext<IDeviceContext>(DeviceContext);
-
+        selectedOutputDeviceId
+    }: IDeviceState = useSelector((state: IRootState) => state.devices);
     useProgramChangeInputListener(inputDevicesById[ selectedInputDeviceId ]);
     useEffect(() => {
         function hasDeviceArrayChanged(source: MidiPort[], target: string[]) {
@@ -31,16 +39,17 @@ const Devices: React.FC = () => {
             );
         }
 
-        if (hasDeviceArrayChanged(webmidi.inputs, inputDevices)) {
-            useInfoLog('Setting input devices!');
 
-            setInputDevices(webmidi.inputs);
+        if (hasDeviceArrayChanged(webmidi.inputs, inputDevices)) {
+            log('Setting input devices!');
+
+            dispatch(setInputDevices(webmidi.inputs));
         }
 
         if (hasDeviceArrayChanged(webmidi.outputs, outputDevices)) {
-            useInfoLog('Setting output devices!');
+            log('Setting output devices!');
 
-            setOutputDevices(webmidi.outputs);
+            dispatch(setOutputDevices(webmidi.outputs));
         }
     }, [webmidi.inputs, webmidi.outputs]);
 
@@ -57,13 +66,13 @@ const Devices: React.FC = () => {
                 devices={inputs}
                 title={'Input Devices'}
                 selectedDeviceId={selectedInputDeviceId}
-                setSelectedDevice={selectInputDevice}
+                setSelectedDevice={selectInput}
             />
             <DeviceList
                 devices={outputs}
                 title={'Output Devices'}
                 selectedDeviceId={selectedOutputDeviceId}
-                setSelectedDevice={selectOutputDevice}
+                setSelectedDevice={selectOutput}
             />
         </section>
     );
