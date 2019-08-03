@@ -15,27 +15,24 @@ const LogLevelValue = {
 const DEFAULT_LOG_LEVEL: Readonly<LogLevel> = LogLevel.INFO;
 
 /**
- * Hook which logs a message if it meets the logging threshold
- * @param message
- * @param level
+ * Hook which returns a logging instance adhering to the current log level
+ * threshold
  */
 export function useLogger(level: LogLevel = LogLevel.INFO) {
-    const [logLevelThreshold, setLogLevelThreshold] = useState<LogLevel>(
-        DEFAULT_LOG_LEVEL
-    );
+    return function(message: string, ...messages: string[]) {
+        let combinedMessage = message;
 
-    function logMessage(message: string) {
-        useEffect(() => {
-            if (shouldLogMessage(level, logLevelThreshold)) {
-                console.log(
-                    `${level} | ${new Date().toLocaleString()} | ${message}`
-                );
-            }
-        }, []);
+        if (messages && messages.length) {
+            combinedMessage = `${message} ${messages.join('|')}`;
+        }
+
+        if (shouldLogMessage(level, DEFAULT_LOG_LEVEL)) {
+            console.log(
+                `${level} | ${new Date().toLocaleString()} | ${combinedMessage}`
+            );
+        }
     }
-
-    return logMessage;
-}
+};
 
 function shouldLogMessage(
     messageLogLevel: LogLevel,
@@ -44,15 +41,15 @@ function shouldLogMessage(
     return LogLevelValue[messageLogLevel] <= LogLevelValue[logLevelThreshold];
 }
 
-export function useInfoLog(message: string) {
+export function useInfoLog()  {
     return useLogger(LogLevel.INFO);
 }
 
-export function useWarningLog(message: string) {
+export function useWarningLog() {
     return useLogger(LogLevel.WARN);
 }
 
-export function useErrorLog(message: string) {
+export function useErrorLog() {
     return useLogger(LogLevel.ERROR);
 }
 
