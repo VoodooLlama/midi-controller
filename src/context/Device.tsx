@@ -5,6 +5,12 @@ import deviceReducer from '../reducers/device';
 import { DEVICE_ACTIONS } from '../actions/device';
 import { IDeviceState, initialState } from '../state/device';
 
+/**
+ * DEPRECATED
+ *
+ * Being preserved for historical sake for the time being
+ */
+
 export interface IDeviceContext extends IDeviceState {
     setInputDevices: (inputs: Input[]) => void;
     setOutputDevices: (outputs: Output[]) => void;
