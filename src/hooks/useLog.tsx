@@ -12,45 +12,37 @@ const LogLevelValue = {
     [LogLevel.ERROR]: 2
 };
 
+const DELIMITER_BASE_CHAR = '|';
+const DELIMITER_PADDING =  ' ';
+const DELIMITER = `${ DELIMITER_PADDING }${ DELIMITER_BASE_CHAR }${ DELIMITER_PADDING }`;
+
 const DEFAULT_LOG_LEVEL: Readonly<LogLevel> = LogLevel.INFO;
 
 /**
- * Hook which returns a logging instance adhering to the current log level
- * threshold
+ * Provides a consistently formatted logging mechanism
  */
-export function useLogger(level: LogLevel = LogLevel.INFO) {
-    return function(message: string, ...messages: string[]) {
-        let combinedMessage = message;
+function useLog(level: LogLevel = LogLevel.INFO, ...messages: string[]) {
+    let combinedMessage = messages.join(DELIMITER);
 
-        if (messages && messages.length) {
-            combinedMessage = `${message} ${messages.join('|')}`;
-        }
-
-        if (shouldLogMessage(level, DEFAULT_LOG_LEVEL)) {
-            console.log(
-                `${level} | ${new Date().toLocaleString()} | ${combinedMessage}`
-            );
-        }
+    if (shouldLogMessage(level)) {
+        console.log(
+            `${level} ${ DELIMITER } ${new Date().toLocaleString()} | ${combinedMessage}`
+        );
     }
 };
 
+/**
+ * Determines whether to log a message based on comparing the value to
+ * @param messageLogLevel
+ * @param logLevelThreshold
+ */
 function shouldLogMessage(
     messageLogLevel: LogLevel,
-    logLevelThreshold: LogLevel
+    logLevelThreshold: LogLevel = DEFAULT_LOG_LEVEL
 ) {
     return LogLevelValue[messageLogLevel] <= LogLevelValue[logLevelThreshold];
 }
 
-export function useInfoLog()  {
-    return useLogger(LogLevel.INFO);
-}
-
-export function useWarningLog() {
-    return useLogger(LogLevel.WARN);
-}
-
-export function useErrorLog() {
-    return useLogger(LogLevel.ERROR);
-}
-
-export default useLogger;
+export const useInfoLog = useLog.bind(null, LogLevel.INFO);
+export const useWarningLog = useLog.bind(null, LogLevel.WARN);
+export const useErrorLog = useLog.bind(null, LogLevel.ERROR);
