@@ -5,21 +5,18 @@ import webmidi from 'webmidi';
 import { DeviceContext } from '../context/Device';
 import { useInfoLog, useWarningLog } from './useLog';
 
-const warn = useWarningLog();
-const info = useInfoLog();
-
 function useEnableWebMIDI(): boolean {
     const [enabled, setEnabledState] = useState<boolean>(false);
 
     useEffect(() => {
         function onStatusChange(err?: Error) {
             if (err) {
-                warn('An error occured connecting to MIDI devices!');
+                useWarningLog('An error occured connecting to MIDI devices!');
 
                 setEnabledState(false);
             }
 
-            info('Enabled WebMIDI!');
+            useInfoLog('Enabled WebMIDI!');
 
             setEnabledState(true);
         }
@@ -27,7 +24,7 @@ function useEnableWebMIDI(): boolean {
         webmidi.enable(onStatusChange, true);
 
         return () => {
-            info('Disabling WebMIDI!');
+            useInfoLog('Disabling WebMIDI!');
 
             webmidi.disable();
         };

@@ -1,4 +1,5 @@
 import { IPedal } from '../state/pedal';
+import { useInfoLog } from '../hooks/useLog';
 import pedalExampleJSON from '../../devices.json';
 
 interface IPedalJSONSchema {
@@ -6,5 +7,7 @@ interface IPedalJSONSchema {
 }
 
 export function retrievePedalData(): Promise<IPedalJSONSchema> {
+    useInfoLog('Retrieving stored target device config data!');
+
     return Promise.resolve(pedalExampleJSON);
 }

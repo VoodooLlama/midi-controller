@@ -7,7 +7,7 @@ import {
     InputEventControlchange,
     InputEventProgramchange
 } from 'webmidi';
-import useLog from './useLog';
+import { useInfoLog } from './useLog';
 
 type InputEventType = keyof InputEvents;
 type ValidInputEvents = InputEventControlchange | InputEventProgramchange;
@@ -28,14 +28,14 @@ export function useDeviceInputListener({
     value
 }: IDeviceInputListenerParams) {
     useEffect(() => {
-        console.log(
+        useInfoLog(
             `Adding ${eventType} event listener for device on channel ${channel}!`
         );
 
         input.on(eventType, channel, callback);
 
         return () => {
-            console.log(
+            useInfoLog(
                 `Removing ${eventType} event listener for device on channel ${channel}!`
             );
 

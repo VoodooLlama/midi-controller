@@ -1,5 +1,6 @@
 import { InputEventProgramchange, IMidiChannel, Input } from 'webmidi';
 import { useEffect } from 'react';
+import { useInfoLog } from './useLog';
 
 /**
  * Channel-specific MIDI events: noteoff, noteon, keyaftertouch,
@@ -16,12 +17,12 @@ export function useProgramChangeInputListener(
 ) {
     useEffect(() => {
         if (input) {
-            console.log('Adding event listener for programchange');
+            useInfoLog('Adding event listener for programchange');
 
             input.on('programchange', 'all', callback);
 
             return () => {
-                console.log('Removing event listener for programchange');
+                useInfoLog('Removing event listener for programchange');
 
                 input.removeListener('programchange', 'all');
             };
@@ -30,5 +31,5 @@ export function useProgramChangeInputListener(
 }
 
 function defaultProgramChangeListener(event: InputEventProgramchange) {
-    console.log(`PC\t${ event.channel }\t${ event.value }`);
+    useInfoLog(`PC\t${ event.channel }\t${ event.value }`);
 }

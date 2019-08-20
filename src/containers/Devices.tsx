@@ -18,7 +18,6 @@ import {
 } from '../actions/device';
 
 const Devices: React.FC = () => {
-    const log = useInfoLog();
     const dispatch = useDispatch<Dispatch<DeviceActions>>();
     const {
         inputDevices,
@@ -41,13 +40,13 @@ const Devices: React.FC = () => {
 
 
         if (hasDeviceArrayChanged(webmidi.inputs, inputDevices)) {
-            log('Setting input devices!');
+            useInfoLog('Setting input devices!');
 
             dispatch(setInputDevices(webmidi.inputs));
         }
 
         if (hasDeviceArrayChanged(webmidi.outputs, outputDevices)) {
-            log('Setting output devices!');
+            useInfoLog('Setting output devices!');
 
             dispatch(setOutputDevices(webmidi.outputs));
         }
