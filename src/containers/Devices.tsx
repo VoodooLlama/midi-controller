@@ -60,19 +60,27 @@ const Devices: React.FC = () => {
         (deviceId: string) => outputDevicesById[deviceId]
     );
 
+    const selectInputDevice = (deviceId: string) => {
+        dispatch(selectInput(deviceId));
+    };
+
+    const selectOutputDevice = (deviceId: string) => {
+        dispatch(selectOutput(deviceId));
+    }
+
     return (
         <section className='device-list-container'>
             <DeviceList
                 devices={inputs}
                 title={'Input Devices'}
                 selectedDeviceId={selectedInputDeviceId}
-                setSelectedDevice={selectInput}
+                setSelectedDevice={selectInputDevice}
             />
             <DeviceList
                 devices={outputs}
                 title={'Output Devices'}
                 selectedDeviceId={selectedOutputDeviceId}
-                setSelectedDevice={selectOutput}
+                setSelectedDevice={selectOutputDevice}
             />
         </section>
     );

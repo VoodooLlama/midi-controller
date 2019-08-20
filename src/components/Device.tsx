@@ -35,8 +35,10 @@ const Device: React.FC<IDeviceProps> = ({
 
     const selectDeviceHandler = () => {
         if (!selected) {
-            setSelectedDevice(id);
+            return setSelectedDevice(id);
         }
+
+        setSelectedDevice('');
     };
 
     return (
