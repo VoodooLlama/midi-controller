@@ -21,7 +21,7 @@ const DEFAULT_LOG_LEVEL: Readonly<LogLevel> = LogLevel.INFO;
 /**
  * Provides a consistently formatted logging mechanism
  */
-function useLog(level: LogLevel = LogLevel.INFO, ...messages: string[]) {
+function useLog(level: LogLevel = LogLevel.INFO, ...messages: (string | number)[]) {
     let combinedMessage = messages.join(DELIMITER);
 
     if (shouldLogMessage(level)) {
