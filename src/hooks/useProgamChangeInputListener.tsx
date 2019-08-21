@@ -13,23 +13,24 @@ import { useInfoLog } from './useLog';
 
 export function useProgramChangeInputListener(
     input: Input | undefined,
+    channel: number | 'all' = 'all',
     callback = defaultProgramChangeListener
 ) {
     useEffect(() => {
         if (input) {
-            useInfoLog('Adding event listener for programchange');
+            useInfoLog(`Adding event listener for programchange on ${ channel }`);
 
-            input.on('programchange', 'all', callback);
+            input.on('programchange', channel, callback);
 
             return () => {
-                useInfoLog('Removing event listener for programchange');
+                useInfoLog(`Removing event listener for programchange on ${ channel }`);
 
-                input.removeListener('programchange', 'all');
+                input.removeListener('programchange', channel);
             };
         }
     }, [input]);
 }
 
 function defaultProgramChangeListener(event: InputEventProgramchange) {
-    useInfoLog(`PC\t${ event.channel }\t${ event.value }`);
+    useInfoLog('PC', `C: ${ event.channel }`, `V: ${ event.value }`);
 }
