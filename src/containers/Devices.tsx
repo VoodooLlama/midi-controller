@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import webmidi, { MidiPort, Input, Output, InputEvents } from 'webmidi';
 import DeviceList from '../components/DeviceList';
-import { IDeviceContext, DeviceContext } from '../context/Device';
+import { useControlChangeInputListener } from '../hooks/useControlChangeInputListener';
 import { useProgramChangeInputListener } from '../hooks/useProgamChangeInputListener';
 import { useInfoLog } from '../hooks/useLog';
 import { IRootState } from '../state/index';
@@ -27,7 +27,9 @@ const Devices: React.FC = () => {
         selectedInputDeviceId,
         selectedOutputDeviceId
     }: IDeviceState = useSelector((state: IRootState) => state.devices);
-    useProgramChangeInputListener(inputDevicesById[ selectedInputDeviceId ]);
+    const currentInputDevice = inputDevicesById[ selectedInputDeviceId ];
+    useControlChangeInputListener(currentInputDevice);
+    useProgramChangeInputListener(currentInputDevice);
     useEffect(() => {
         function hasDeviceArrayChanged(source: MidiPort[], target: string[]) {
             const currentDevices = source.map(port => port.id).sort();
