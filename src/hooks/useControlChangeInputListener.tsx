@@ -13,7 +13,7 @@ import { useInfoLog } from './useLog';
 
 export function useControlChangeInputListener(
     input?: Input,
-    channel: string = 'all',
+    channel: number | 'all' = 'all',
     callback = defaultProgramChangeListener
 ) {
     useEffect(() => {
@@ -28,7 +28,7 @@ export function useControlChangeInputListener(
                 input.removeListener('controlchange', channel);
             };
         }
-    }, []);
+    }, [input]);
 }
 
 function defaultProgramChangeListener(event: InputEventControlchange) {
