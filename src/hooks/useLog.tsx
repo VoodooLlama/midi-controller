@@ -26,15 +26,15 @@ function useLog(level: LogLevel = LogLevel.INFO, ...messages: (string | number)[
 
     if (shouldLogMessage(level)) {
         console.log(
-            `${level} ${ DELIMITER } ${new Date().toLocaleString()} | ${combinedMessage}`
+            `${level} ${ DELIMITER } ${new Date().toISOString()} | ${combinedMessage}`
         );
     }
 };
 
 /**
  * Determines whether to log a message based on comparing the value to
- * @param messageLogLevel
- * @param logLevelThreshold
+ * @param messageLogLevel Current log level
+ * @param logLevelThreshold Logging level threshold
  */
 function shouldLogMessage(
     messageLogLevel: LogLevel,
